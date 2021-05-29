@@ -1,0 +1,58 @@
+@keyframes bounce {
+  50% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin {
+  50% {
+    transform: rotate(-2deg);
+  }
+
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+.icon {
+  &-dino {
+    transform-origin: bottom;
+    animation: spin 2s ease-in-out alternate infinite;
+  }
+
+  &-zigzag-first,
+  &-zigzag-second,
+  &-zigzag-third,
+  &-zigzag-forth {
+    animation: bounce 2s ease-in-out alternate infinite;
+  }
+
+  &-zigzag-second {
+    animation-delay: 0.1s;
+  }
+
+  &-zigzag-third {
+    animation-delay: 0.2s;
+  }
+
+  &-zigzag-forth {
+    animation-delay: 0.3s;
+  }
+
+  @include viewport--md {
+    &-flag {
+      fill: $color-default-white;
+    }
+
+    &-zigzag-first,
+    &-zigzag-second,
+    &-zigzag-third,
+    &-zigzag-forth {
+      fill: $color-default-white;
+    }
+  }
+}

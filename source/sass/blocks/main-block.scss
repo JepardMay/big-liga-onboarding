@@ -1,0 +1,134 @@
+.main-block {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 74px);
+  min-height: calc(100 * var(--vh, 1vh) - 74px);
+  padding: 46px 0;
+
+  svg {
+    max-width: 100%;
+    margin-bottom: 35px;
+  }
+
+  @include viewport--md {
+    position: relative;
+    // padding: 0;
+  }
+}
+
+.main-block__wrapper {
+  display: flex;
+  align-items: flex-end;
+
+  @include viewport--md {
+    flex-direction: column;
+  }
+}
+
+.main-block__title {
+  margin: 0;
+  margin-right: 40px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 96px;
+  line-height: 96px;
+  color: $color-neon-blue;
+
+  @include viewport--md {
+    margin: 0 35px;
+    margin-bottom: 40px;
+  }
+
+  @include viewport--sm {
+    margin: 0 16px;
+    margin-bottom: 40px;
+    font-size: 46px;
+    line-height: 46px;
+  }
+}
+
+.main-block__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include viewport--md {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: calc(100vh - 74px);
+    min-height: calc(100 * var(--vh, 1vh) - 74px);
+    z-index: 0;
+    padding: 0 35px;
+    background-color: $color-neon-blue;
+    transform: translateX(-100%);
+    transition: transform $modal-transition-settings;
+    pointer-events: none;
+    overflow-y: auto;
+  }
+
+  @include viewport--sm {
+    padding: 0 16px;
+  }
+}
+
+.main-block__column--show {
+  transform: translateX(0);
+  pointer-events: initial;
+
+  &::before {
+    opacity: 1;
+  }
+}
+
+.main-block__text {
+  max-width: 350px;
+  margin: 0;
+  font-size: 30px;
+  line-height: 40px;
+  text-transform: lowercase;
+
+  @include viewport--md {
+    color: $color-default-white;
+  }
+
+  @include viewport--sm {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.main-block__btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: $color-transparent;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin-right: calc(50% - 50vw);
+    margin-left: calc(50% - 50vw);
+    background-color: $color-transparent;
+  }
+}

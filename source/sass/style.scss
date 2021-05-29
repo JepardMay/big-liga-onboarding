@@ -18,7 +18,11 @@
 //---------------------------------
 
 @import "blocks/header";
-
+@import "blocks/main-nav";
+@import "blocks/loader-display";
+@import "blocks/hidden";
+@import "blocks/main-block";
+@import "blocks/icon";
 
 // используйте это для отключения ховеров на тач устройствах
 // ! но не используйте это для текстовых полей ( input, textarea )

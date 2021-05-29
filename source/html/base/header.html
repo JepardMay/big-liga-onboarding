@@ -1,6 +1,56 @@
 <header class="header @@if (context.mod) { header--@@mod }">
-  <div class="header__wrapper">
-    <a class="header__logo" @@if (!context.main) { href="index.html"} aria-label="Переход на главную">
-    </a>
+  <div class="container">
+    <div class="header__wrapper">
+      <a class="header__logo" @@if (!context.main) { href="index.html" } aria-label="Переход на главную">
+        @@include("source/html/components/logo.html", { "logo-width": "192",
+        "logo-height": "24" })
+      </a>
+      <nav class="main-nav">
+        <button class="main-nav__toggle" type="button" aria-label="Переключатель отображения меню" aria-pressed="false">
+        </button>
+        <div class="main-nav__wrapper">
+          <ul class="main-nav__list">
+            <li class="main-nav__item">
+              <a class="main-nav__link @@if (context.headerActiveLinkIndex === 0) { main-nav__link--active }"
+              @@if (context.headerActiveLinkIndex !== 0) { href="about.html" }>
+                О нас
+              </a>
+            </li>
+            <li class="main-nav__item">
+              <a class="main-nav__link @@if (context.headerActiveLinkIndex === 1) { main-nav__link--active }"
+              @@if (context.headerActiveLinkIndex !== 1) { href="prices.html" }>
+                Цены
+              </a>
+            </li>
+            <li class="main-nav__item">
+              <a class="main-nav__link @@if (context.headerActiveLinkIndex === 2) { main-nav__link--active }"
+              @@if (context.headerActiveLinkIndex !== 2) { href="criterion.html" }>
+                Критерии качества
+              </a>
+            </li>
+            <li class="main-nav__item">
+              <a class="main-nav__link main-nav__link--redirection @@if (context.headerActiveLinkIndex === 3) { main-nav__link--active }"
+                @@if (context.headerActiveLinkIndex !== 3) { href="testing.html" }>
+                Тестирование
+                <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.933292 6.07107L5.88304 1.12132M5.88304 1.12132H1.6404M5.88304 1.12132V5.36396"
+                    stroke="#2C39F2" />
+                </svg>
+              </a>
+            </li>
+            <li class="main-nav__item">
+              <a class="main-nav__link main-nav__link--redirection @@if (context.headerActiveLinkIndex === 4) { main-nav__link--active }"
+                @@if (context.headerActiveLinkIndex !== 4) { href="blog.html" }>
+                Блог
+                <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.933292 6.07107L5.88304 1.12132M5.88304 1.12132H1.6404M5.88304 1.12132V5.36396"
+                    stroke="#2C39F2" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
   </div>
 </header>

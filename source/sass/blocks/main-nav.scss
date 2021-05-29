@@ -1,0 +1,171 @@
+.main-nav {
+  position: relative;
+
+  z-index: 100;
+  margin-left: auto;
+}
+
+.main-nav__wrapper {
+  @include viewport--md {
+    position: fixed;
+    top: 74px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 74px 0;
+    background-color: $color-default-white;
+    overflow-y: auto;
+    transform: translateY(-1000px);
+    pointer-events: none;
+    transition: transform $modal-transition-settings;
+  }
+}
+
+.main-nav__wrapper--open {
+  @include viewport--md {
+    pointer-events: initial;
+    transform: translateY(0);
+    transition: transform $modal-transition-settings;
+  }
+}
+
+.main-nav__list {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include viewport--md {
+    flex-direction: column;
+  }
+}
+
+.main-nav__item {
+  margin-right: 24px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @include viewport--md {
+    margin-bottom: 30px;
+    margin-right: 0;
+    font-size: 28px;
+    line-height: 28px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.main-nav__link {
+  position: relative;
+  font: inherit;
+  transition: color $default-transition-settings;
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 2px);
+    z-index: 1;
+    width: 7px;
+    height: 6px;
+  }
+
+  @media (hover: hover), screen and (min-width: 0\0) {
+    &:hover,
+    &:focus {
+      color: $color-vivid-violet;
+      outline: none;
+      transition: color $default-transition-settings;
+    }
+  }
+
+  @include viewport--md {
+    svg {
+      top: 8px;
+      left: calc(100% + 5px);
+    }
+  }
+}
+
+.main-nav__toggle {
+  position: relative;
+  display: none;
+  width: 40px;
+  height: 40px;
+  margin: -13px -10px;
+  margin-left: auto;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    position: absolute;
+    left: 0;
+    content: "";
+    width: 30px;
+    height: 2px;
+    color: $color-neon-blue;
+    background-color: $color-neon-blue;
+    box-shadow: 0 0 0 0;
+    transition: top $default-transition-settings,
+      box-shadow $default-transition-settings,
+      transform $default-transition-settings,
+      color $default-transition-settings,
+      background-color $default-transition-settings;
+  }
+
+  &::before {
+    top: 10px;
+    box-shadow: 0 9px 0 0;
+  }
+
+  &::after {
+    top: calc(100% - 13px);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (hover: hover), screen and (min-width: 0\0) {
+    &:hover,
+    &:focus {
+      &::before,
+      &::after {
+        color: $color-vivid-violet;
+        background-color: $color-vivid-violet;
+      }
+    }
+  }
+
+  @include viewport--md {
+    display: block;
+  }
+}
+
+.main-nav__toggle--open {
+  &::before {
+    top: 20px;
+    box-shadow: 0 0 0 0 $color-neon-blue;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    top: calc(100% - 20px);
+    transform: rotate(-45deg);
+  }
+}

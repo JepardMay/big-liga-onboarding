@@ -1,0 +1,13 @@
+.hidden-desktop {
+  display: none;
+
+  @include viewport--md {
+    display: initial;
+  }
+}
+
+.hidden-mobile {
+  @include viewport--md {
+    display: none;
+  }
+}
