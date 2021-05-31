@@ -99,7 +99,7 @@ const syncserver = () => {
   gulp.watch("source/data/**/*.{js,json}", gulp.series(copy, refresh));
   gulp.watch(
     "source/img/**/*.svg",
-    gulp.series(copysvg, sprite, html, refresh)
+    gulp.series(copysvg, html, refresh)
   );
   gulp.watch(
     "source/img/**/*.{png,jpg}",
@@ -148,7 +148,7 @@ const clean = () => {
   return del("build");
 };
 
-const build = gulp.series(clean, svgo, copy, css, sprite, js, html);
+const build = gulp.series(clean, svgo, copy, css, js, html);
 
 const start = gulp.series(build, syncserver);
 

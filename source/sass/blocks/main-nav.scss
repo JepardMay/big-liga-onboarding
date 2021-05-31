@@ -5,34 +5,6 @@
   margin-left: auto;
 }
 
-.main-nav__wrapper {
-  @include viewport--md {
-    position: fixed;
-    top: 74px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 74px 0;
-    background-color: $color-default-white;
-    overflow-y: auto;
-    transform: translateY(-1000px);
-    pointer-events: none;
-    transition: transform $modal-transition-settings;
-  }
-}
-
-.main-nav__wrapper--open {
-  @include viewport--md {
-    pointer-events: initial;
-    transform: translateY(0);
-    transition: transform $modal-transition-settings;
-  }
-}
-
 .main-nav__list {
   display: flex;
   align-items: center;
@@ -41,7 +13,26 @@
   list-style: none;
 
   @include viewport--md {
-    flex-direction: column;
+    position: fixed;
+    top: 74px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: block;
+    background-color: $color-default-white;
+    overflow-y: auto;
+    transform: translateY(calc(-100% - 74px));
+    pointer-events: none;
+    transition: transform $modal-transition-settings;
+  }
+}
+
+.main-nav__list--open {
+  @include viewport--md {
+    pointer-events: initial;
+    transform: translateY(0);
+    transition: transform $modal-transition-settings;
   }
 }
 
@@ -56,13 +47,20 @@
   }
 
   @include viewport--md {
+    width: 100%;
     margin-bottom: 30px;
     margin-right: 0;
     font-size: 28px;
     line-height: 28px;
+    text-align: center;
+
+    &:first-child {
+      padding-top: 30px;
+    }
 
     &:last-child {
       margin-bottom: 0;
+      padding-bottom: 30px;
     }
   }
 }
@@ -81,7 +79,9 @@
     height: 6px;
   }
 
-  @media (hover: hover), screen and (min-width: 0\0) {
+  @media (hover: hover),
+  screen and (min-width: 0\0) {
+
     &:hover,
     &:focus {
       color: $color-vivid-violet;
@@ -141,9 +141,12 @@
     outline: none;
   }
 
-  @media (hover: hover), screen and (min-width: 0\0) {
+  @media (hover: hover),
+  screen and (min-width: 0\0) {
+
     &:hover,
     &:focus {
+
       &::before,
       &::after {
         color: $color-vivid-violet;

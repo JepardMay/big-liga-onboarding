@@ -1,11 +1,13 @@
-const stopTransitiononResize = () => {
+const stopTransitiononResize = (el) => {
   let resizeTimer;
 
   window.addEventListener('resize', () => {
-    document.body.classList.add('resize-animation-stopper');
+    el.style.transition = 'none';
+    el.style.animation = 'none';
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      document.body.classList.remove('resize-animation-stopper');
+      el.style.removeProperty('transition');
+      el.style.removeProperty('animation');
     }, 400);
   });
 };

@@ -3,16 +3,19 @@
   align-items: center;
   min-height: calc(100vh - 74px);
   min-height: calc(100 * var(--vh, 1vh) - 74px);
-  padding: 46px 0;
 
   svg {
+    flex-shrink: 0;
     max-width: 100%;
     margin-bottom: 35px;
   }
 
   @include viewport--md {
-    position: relative;
-    // padding: 0;
+    overflow-x: hidden;
+
+    svg {
+      margin-top: auto;
+    }
   }
 }
 
@@ -54,14 +57,14 @@
   align-items: center;
 
   @include viewport--md {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 74px;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
-    min-height: calc(100vh - 74px);
-    min-height: calc(100 * var(--vh, 1vh) - 74px);
     z-index: 0;
-    padding: 0 35px;
+    display: block;
     background-color: $color-neon-blue;
     transform: translateX(-100%);
     transition: transform $modal-transition-settings;
@@ -83,6 +86,14 @@
   }
 }
 
+.main-block__content {
+  @include viewport--md {
+    display: block;
+    height: 100%;
+    text-align: center;
+  }
+}
+
 .main-block__text {
   max-width: 350px;
   margin: 0;
@@ -91,7 +102,13 @@
   text-transform: lowercase;
 
   @include viewport--md {
+    margin: 0 auto;
+    text-align: left;
     color: $color-default-white;
+
+    &:last-child {
+      padding-bottom: 30px;
+    }
   }
 
   @include viewport--sm {

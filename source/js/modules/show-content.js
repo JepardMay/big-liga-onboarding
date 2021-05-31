@@ -1,52 +1,67 @@
-import {disableScrolling, enableScrolling} from '../utils/scroll-lock';
+import {
+  disableScrolling,
+  enableScrolling
+} from '../utils/scroll-lock';
+import {
+  stopTransitiononResize
+} from './stop-transition-resize';
+import {
+  closeNavMenu
+} from './init-nav-menu';
 
+const mainBlock = document.querySelector('.main-block');
 const content = document.querySelector('.main-block__column');
-const blockBtn = document.querySelector('.main-block__btn');
 
-const showContent = () => {
-  const onEscPress = (evt) => {
-    const isEscKey = evt.key === 'Escape' || evt.key === 'Esc';
+const onEscPress = (evt) => {
+  const isEscKey = evt.key === 'Escape' || evt.key === 'Esc';
 
-    if (isEscKey && content.classList.contains('main-block__column--show')) {
-      evt.preventDefault();
-      removeContent();
-    }
-  };
+  if (isEscKey && content.classList.contains('main-block__column--show')) {
+    evt.preventDefault();
+    removeContent();
+  }
+};
 
-  const removeContent = () => {
-    blockBtn.style.pointerEvents = 'none';
+const removeContent = () => {
+  if (content.classList.contains('main-block__column--show')) {
+    mainBlock.style.pointerEvents = 'none';
     content.classList.remove('main-block__column--show');
     enableScrolling();
 
     document.removeEventListener('keydown', onEscPress);
     content.addEventListener('transitionend', () => {
-      blockBtn.style.removeProperty('pointer-events');
+      mainBlock.style.removeProperty('pointer-events');
     });
-  };
-
-  if (content && blockBtn) {
-    blockBtn.addEventListener('click', (evt) => {
-      evt.preventDefault();
-      if (content.classList.contains('main-block__column--show')) {
-        removeContent();
-      } else {
-        blockBtn.style.pointerEvents = 'none';
-        content.classList.add('main-block__column--show');
-        disableScrolling();
-
-        document.addEventListener('keydown', onEscPress);
-        content.addEventListener('transitionend', () => {
-          blockBtn.style.removeProperty('pointer-events');
-        });
-      }
-    });
-
-    window.addEventListener('resize', () => {
-      if (window.matchMedia('(max-width: 1023px)').matches) {
-        removeContent();
-      }
-    }, false);
   }
 };
 
-export {showContent};
+const onClick = (evt) => {
+  if (evt.target.closest('.main-block')) {
+    closeNavMenu();
+    evt.preventDefault();
+    if (content.classList.contains('main-block__column--show')) {
+      removeContent();
+    } else {
+      mainBlock.style.pointerEvents = 'none';
+      content.classList.add('main-block__column--show');
+      disableScrolling();
+
+      document.addEventListener('keydown', onEscPress);
+      content.addEventListener('transitionend', () => {
+        mainBlock.style.removeProperty('pointer-events');
+      });
+    }
+  }
+};
+
+const showContent = () => {
+  if (content) {
+    document.body.addEventListener('click', onClick);
+
+    stopTransitiononResize(content);
+  }
+};
+
+export {
+  removeContent,
+  showContent
+};
