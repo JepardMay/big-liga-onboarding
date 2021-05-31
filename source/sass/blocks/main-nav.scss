@@ -5,13 +5,7 @@
   margin-left: auto;
 }
 
-.main-nav__list {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
+.main-nav__wrapper {
   @include viewport--md {
     position: fixed;
     top: 74px;
@@ -28,11 +22,26 @@
   }
 }
 
-.main-nav__list--open {
+.main-nav__wrapper--open {
   @include viewport--md {
     pointer-events: initial;
     transform: translateY(0);
     transition: transform $modal-transition-settings;
+  }
+}
+
+.main-nav__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include viewport--md {
+    justify-content: center;
+    align-content: center;
+    min-height: 100%;
   }
 }
 
@@ -100,6 +109,7 @@
 
 .main-nav__toggle {
   position: relative;
+  z-index: 12;
   display: none;
   width: 40px;
   height: 40px;

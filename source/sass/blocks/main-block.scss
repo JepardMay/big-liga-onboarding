@@ -12,10 +12,6 @@
 
   @include viewport--md {
     overflow-x: hidden;
-
-    svg {
-      margin-top: auto;
-    }
   }
 }
 
@@ -88,9 +84,11 @@
 
 .main-block__content {
   @include viewport--md {
-    display: block;
-    height: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100%;
   }
 }
 

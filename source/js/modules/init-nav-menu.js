@@ -9,23 +9,23 @@ import {
   removeContent
 } from './show-content';
 
-const navMenu = document.querySelector('.main-nav__list');
+const navMenu = document.querySelector('.main-nav__wrapper');
 const navMenuBtn = document.querySelector('.main-nav__toggle');
 
 const onEscPress = (evt) => {
   const isEscKey = evt.key === 'Escape' || evt.key === 'Esc';
 
-  if (isEscKey && navMenu.classList.contains('main-nav__list--open')) {
+  if (isEscKey && navMenu.classList.contains('main-nav__wrapper--open')) {
     evt.preventDefault();
     closeNavMenu();
   }
 };
 
 const closeNavMenu = () => {
-  if (navMenu.classList.contains('main-nav__list--open')) {
+  if (navMenu.classList.contains('main-nav__wrapper--open')) {
     navMenuBtn.style.pointerEvents = 'none';
     navMenuBtn.classList.remove('main-nav__toggle--open');
-    navMenu.classList.remove('main-nav__list--open');
+    navMenu.classList.remove('main-nav__wrapper--open');
     enableScrolling();
 
     document.removeEventListener('keydown', onEscPress);
@@ -43,7 +43,7 @@ const onClick = (evt) => {
   } else {
     navMenuBtn.style.pointerEvents = 'none';
     navMenuBtn.classList.add('main-nav__toggle--open');
-    navMenu.classList.add('main-nav__list--open');
+    navMenu.classList.add('main-nav__wrapper--open');
     disableScrolling();
 
     document.addEventListener('keydown', onEscPress);
